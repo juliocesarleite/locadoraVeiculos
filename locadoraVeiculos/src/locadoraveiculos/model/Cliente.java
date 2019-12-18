@@ -33,16 +33,18 @@ public class Cliente implements Serializable{
     @OneToOne
     private Endereco endereco;
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Veiculo> veiculos = new ArrayList<>();
 
-    public Cliente(int CodCliente, String NomeCliente, String EmailCliente, int RGCliente, String EnderecoCliente, Endereco endereco, List<Veiculo> veiculos) {
-        this.CodCliente = CodCliente;
+    public Cliente(String NomeCliente, String EmailCliente, int RGCliente, Endereco endereco, List<Veiculo> veiculos) {
         this.NomeCliente = NomeCliente;
         this.EmailCliente = EmailCliente;
         this.RGCliente = RGCliente;
         this.endereco = endereco;
         this.veiculos = veiculos;
+    }
+
+    public Cliente() {
     }
     
     public void setNomeCliente(String nome){

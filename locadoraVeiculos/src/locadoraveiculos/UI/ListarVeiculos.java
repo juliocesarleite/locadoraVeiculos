@@ -7,28 +7,27 @@ package locadoraveiculos.UI;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import static programa.CadastroCliente.acessoBD;
-import static programa.CadastroCliente.pedidoSQL3;
-import static programa.CadastroCliente.rs;
-
+import java.util.List;
+import locadoraveiculos.infra.VeiculoDAO;
+import locadoraveiculos.model.Veiculo;
 public class ListarVeiculos extends javax.swing.JFrame {
 
-    ArrayList<Veiculo> lista = new ArrayList<Veiculo>();
+    List<Veiculo> lista = new ArrayList<Veiculo>();
     
     public ListarVeiculos() {
         initComponents();
     }
 
-    public void ImprimirArray(){
+    public void imprimirArray(){
         for(int i= 0; i < lista.size(); i++){
                 Veiculo vc = (Veiculo)lista.get(i);
                 jTextArea1.setText(jTextArea1.getText() 
                 + "Código: "+ vc.getCodVeiculo() + "\n"
-                + "Marca: "+ vc.getMarcaVeicu() + "\n"
-                + "Modelo: "+ vc.getModeloVeicu() + "\n"
-                + "Ano: "+ vc.getAnoVeicu() + "\n"
-                + "Cor: "+ vc.getCorVeicu() + "\n"
-                + "Preco: " + vc.getPrecoVeicu() + "\n"
+                + "Marca: "+ vc.getMarcaVeiculo() + "\n"
+                + "Modelo: "+ vc.getModeloVeiculo() + "\n"
+                + "Ano: "+ vc.getAnoVeiculo() + "\n"
+                + "Cor: "+ vc.getCorVeiculo() + "\n"
+                + "Preco: " + vc.getPrecoVeiculo() + "\n"
                 + "Situação: " + vc.getSituacao() + "\n"
                 + "\n");
             }
@@ -41,7 +40,6 @@ public class ListarVeiculos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,14 +61,11 @@ public class ListarVeiculos extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programa/tapete-adesivo-quadriculado-xadrez-pista-de-danca-15-anos.jpg"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
@@ -86,7 +81,6 @@ public class ListarVeiculos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,35 +94,12 @@ public class ListarVeiculos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        acessoBD = new AcessoBD();
+        VeiculoDAO vdao = new VeiculoDAO();
 
-        acessoBD.conecta();
-
-        pedidoSQL3 = "SELECT * FROM veiculoprograma;";
-
-        rs = acessoBD.consulta(pedidoSQL3);
+        lista.addAll(vdao.recuperarTodos());
         
-        lista = new ArrayList();
-        
-        try {
-            while (rs.next()) {
-                Veiculo veicu = new Veiculo();
-                
-                veicu.setCodVeiculo(rs.getString("CodVeiculo"));
-                veicu.setCorVeicu(rs.getString("CorVeicu"));
-                veicu.setMarcaVeicu(rs.getString("MarcaVeicu"));
-                veicu.setPrecoVeicu(rs.getString("PrecoVeicu"));
-                veicu.setModeloVeicu(rs.getString("ModeloVeicu"));
-                veicu.setAnoVeicu(rs.getString("AnoVeicu"));
-                veicu.setSituacao(rs.getString("situacao"));
-                
-                lista.add(veicu);             
-            }
-            ImprimirArray(); 
-            }catch (SQLException e) {
-            System.out.println("Exceção: " + e.toString());
-        }
-        acessoBD.fechaConexao();
+        imprimirArray();
+        System.out.println("chegou");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -174,7 +145,6 @@ public class ListarVeiculos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

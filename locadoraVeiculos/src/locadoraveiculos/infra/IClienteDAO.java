@@ -6,15 +6,13 @@
 package locadoraveiculos.infra;
 
 import java.util.List;
-import locadoraveiculos.model.Veiculo;
+import locadoraveiculos.model.Cliente;
 
 /**
  *
  * @author julio
  */
-public interface IVeiculoDAO {
-    public void salvar(Veiculo v);
-    public List<Veiculo> recuperarTodos();
-    public List<Veiculo> recuperarPorModelo(String modelo);
-    public Veiculo recuperarPorID(int id);
+public interface IClienteDAO {
+    public void salvar(Cliente c);
+    public List<Cliente> recuperaByNome(String nome);
 }

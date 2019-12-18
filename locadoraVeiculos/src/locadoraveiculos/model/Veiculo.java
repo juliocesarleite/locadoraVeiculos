@@ -26,15 +26,19 @@ public class Veiculo implements Serializable {
     private String modeloVeiculo;
     private int anoVeiculo;
     private String situacao;
+//
+//    public Veiculo(int codVeiculo, String corVeiculo, String marcaVeiculo, double precoVeiculo, String modeloVeiculo, int anoVeiculo, String situacao) {
+//        this.codVeiculo = codVeiculo;
+//        this.corVeiculo = corVeiculo;
+//        this.marcaVeiculo = marcaVeiculo;
+//        this.precoVeiculo = precoVeiculo;
+//        this.modeloVeiculo = modeloVeiculo;
+//        this.anoVeiculo = anoVeiculo;
+//        this.situacao = situacao;
+//    }
 
-    public Veiculo(int codVeiculo, String corVeiculo, String marcaVeiculo, double precoVeiculo, String modeloVeiculo, int anoVeiculo, String situacao) {
-        this.codVeiculo = codVeiculo;
-        this.corVeiculo = corVeiculo;
-        this.marcaVeiculo = marcaVeiculo;
-        this.precoVeiculo = precoVeiculo;
-        this.modeloVeiculo = modeloVeiculo;
-        this.anoVeiculo = anoVeiculo;
-        this.situacao = situacao;
+    public Veiculo() {
+        
     }
 
     
