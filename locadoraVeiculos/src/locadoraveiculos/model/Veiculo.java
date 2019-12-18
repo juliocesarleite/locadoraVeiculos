@@ -5,72 +5,96 @@
  */
 package locadoraveiculos.model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author julio
  */
-public class Veiculo {
-    private String CodVeiculo;
-    private String CorVeicu;
-    private String MarcaVeicu;
-    private String PrecoVeicu;
-    private String ModeloVeicu;
-    private String AnoVeicu;
+@Entity
+public class Veiculo implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int codVeiculo;
+    private String corVeiculo;
+    private String marcaVeiculo;
+    private double precoVeiculo;
+    private String modeloVeiculo;
+    private int anoVeiculo;
     private String situacao;
-    
-    public void setCodVeiculo(String cod){
-        this.CodVeiculo = cod;
+
+    public Veiculo(int codVeiculo, String corVeiculo, String marcaVeiculo, double precoVeiculo, String modeloVeiculo, int anoVeiculo, String situacao) {
+        this.codVeiculo = codVeiculo;
+        this.corVeiculo = corVeiculo;
+        this.marcaVeiculo = marcaVeiculo;
+        this.precoVeiculo = precoVeiculo;
+        this.modeloVeiculo = modeloVeiculo;
+        this.anoVeiculo = anoVeiculo;
+        this.situacao = situacao;
     }
+
     
-    public void setCorVeicu(String cor){
-        this.CorVeicu = cor;
+    public int getCodVeiculo() {
+        return codVeiculo;
     }
-    
-    public void setMarcaVeicu(String marca){
-        this.MarcaVeicu = marca;
+
+    public void setCodVeiculo(int codVeiculo) {
+        this.codVeiculo = codVeiculo;
     }
-    
-    public void setPrecoVeicu(String preco){
-        this.PrecoVeicu = preco;
+
+    public String getCorVeiculo() {
+        return corVeiculo;
     }
-    
-    public void setModeloVeicu(String modelo){
-        this.ModeloVeicu = modelo;
+
+    public void setCorVeiculo(String corVeiculo) {
+        this.corVeiculo = corVeiculo;
     }
-    
-    public void setAnoVeicu(String ano){
-        this.AnoVeicu = ano;
+
+    public String getMarcaVeiculo() {
+        return marcaVeiculo;
     }
-    
-    public void setSituacao(String situ){
-        this.situacao = situ;
+
+    public void setMarcaVeiculo(String marcaVeiculo) {
+        this.marcaVeiculo = marcaVeiculo;
     }
-    
-    public String getCodVeiculo(){
-        return CodVeiculo;
+
+    public double getPrecoVeiculo() {
+        return precoVeiculo;
     }
-    
-    public String getCorVeicu(){
-        return CorVeicu;
+
+    public void setPrecoVeiculo(double precoVeiculo) {
+        this.precoVeiculo = precoVeiculo;
     }
-    
-    public String getMarcaVeicu(){
-        return MarcaVeicu;
+
+    public String getModeloVeiculo() {
+        return modeloVeiculo;
     }
-    
-    public String getPrecoVeicu(){
-        return PrecoVeicu;
+
+    public void setModeloVeiculo(String modeloVeiculo) {
+        this.modeloVeiculo = modeloVeiculo;
     }
-    
-    public String getModeloVeicu(){
-        return ModeloVeicu;
+
+    public int getAnoVeiculo() {
+        return anoVeiculo;
     }
-    
-    public String getAnoVeicu(){
-        return AnoVeicu;
+
+    public void setAnoVeiculo(int anoVeiculo) {
+        this.anoVeiculo = anoVeiculo;
     }
-    
-    public String getSituacao(){
+
+    public String getSituacao() {
         return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+    
+    public String ToString(){
+        return "Veiculo { id: " + codVeiculo +", modelo: " + modeloVeiculo + ", fabricante: " + marcaVeiculo + ", ano: " + anoVeiculo + ", cor: " + corVeiculo + ", preço: " + precoVeiculo + ", status: " + situacao + "}";
     }
 }
